@@ -1,15 +1,20 @@
 from file_utils import count_files_and_lines_by_extension
 from summary import generate_summary
 import argparse
+from config import DEFAULT_EXTENSION
 
 def main():
     parser = argparse.ArgumentParser(description="LineScout: Scan directories for file line counts.")
     parser.add_argument("directory", help="Directory to scan")
-    parser.add_argument("extension", help="File extension to filter by (e.g., .txt, .py)")
+    parser.add_argument("extension", nargs="?", default=DEFAULT_EXTENSION, help="File extension to filter by (e.g., .txt, .py). Defaults to config value.")
     parser.add_argument("--size", action="store_true", help="Include file size in summary")
     parser.add_argument("--report", action="store_true", help="Generate a detailed report")
     
     args = parser.parse_args()
+
+     # Check if extension is provided, else use default from config.py
+    if not args.extension:
+        args.extension = DEFAULT_EXTENSION  # Use default extension from config.py
     
     # Count files and lines
     file_count, total_lines = count_files_and_lines_by_extension(args.directory, args.extension)
