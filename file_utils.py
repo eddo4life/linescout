@@ -1,4 +1,5 @@
 import os
+from tqdm import tqdm
 
 def count_files_and_lines_by_extension(directory, extension):
     """
@@ -10,7 +11,7 @@ def count_files_and_lines_by_extension(directory, extension):
     file_count = 0
     total_lines = 0
     
-    for root, _, files in os.walk(directory):
+    for root, _, files in tqdm(os.walk(directory), desc="Scanning directories"):
         for file in files:
             if file.endswith(extension):
                 file_count += 1
