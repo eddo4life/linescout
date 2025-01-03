@@ -1,3 +1,4 @@
+from dictionary_table_formatter import format_data_from_dict_list
 from file_utils import get_file_size
 import os
 
@@ -26,7 +27,6 @@ def generate_summary(directory, extension):
                 })
     
     # Output the file details
-    for detail in file_details:
-        print(f"File: {detail['file']} | Lines: {detail['lines']} | Size: {detail['size']} bytes")
+    format_data_from_dict_list(file_details)
     
     print(f"\nTotal size of all files: {total_size} bytes")
