@@ -29,7 +29,7 @@ def generate_summary(directory, extension):
                         'lines': line_count
                     })
                 except Exception as e:
-                    print_error(e)
+                    print_error(f'{file}:\n\t{e}')
     
     # Output the file details
     format_data_from_dict_list(file_details)
