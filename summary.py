@@ -2,6 +2,8 @@ from dictionary_table_formatter import format_data_from_dict_list
 from file_utils import format_size, get_file_size
 import os
 
+from utils import print_error, print_success
+
 def generate_summary(directory, extension):
     """
     Generates a summary report of files with the given extension.
@@ -27,9 +29,12 @@ def generate_summary(directory, extension):
                         'lines': line_count
                     })
                 except Exception as e:
-                    print("\033[91m" + str(e) + "\033[0m")
+                    print_error(e)
     
     # Output the file details
     format_data_from_dict_list(file_details)
     
-    print(f"\nTotal size of all files: {format_size(total_size)}")
+    if total_size>0:
+        print_success(f"\nTotal size of all files: {format_size(total_size)}")
+    else:
+        print_error(f"\nTotal size of all files: {format_size(total_size)}")
