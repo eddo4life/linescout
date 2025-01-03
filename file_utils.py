@@ -34,10 +34,16 @@ def get_file_size(file_path):
         print(f"Error getting file size for {file_path}: {e}")
         return 0
     
-def bytes_to_megabytes(bytes_value):
+def format_size(bytes_value):
     """
-    Converts a size in bytes to megabytes, rounded to 2 decimal places.
+    Converts a size in bytes to an appropriate human-readable format.
     """
-    megabytes = bytes_value / (1024 ** 2)
-    return round(megabytes, 2)
+    if bytes_value < 1024:
+        return f"{bytes_value}B"
+    elif bytes_value < 1024**2:
+        return f"{bytes_value / 1024:.2f}KB"
+    elif bytes_value < 1024**3:
+        return f"{bytes_value / 1024**2:.2f}MB"
+    else:
+        return f"{bytes_value / 1024**3:.2f}GB"
 
