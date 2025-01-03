@@ -1,5 +1,5 @@
 from dictionary_table_formatter import format_data_from_dict_list
-from file_utils import get_file_size
+from file_utils import bytes_to_megabytes, get_file_size
 import os
 
 def generate_summary(directory, extension):
@@ -22,11 +22,13 @@ def generate_summary(directory, extension):
                     line_count = sum(1 for _ in f)
                 file_details.append({
                     'file': file,
-                    'size': size,
+                    'size in bytes': size,
+                    'size in megabytes':bytes_to_megabytes(size),
                     'lines': line_count
                 })
+                
     
     # Output the file details
     format_data_from_dict_list(file_details)
     
-    print(f"\nTotal size of all files: {total_size} bytes")
+    print(f"\nTotal size of all files: {total_size} bytes -> {bytes_to_megabytes(total_size)} megabytes")

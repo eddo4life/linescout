@@ -33,3 +33,11 @@ def get_file_size(file_path):
     except Exception as e:
         print(f"Error getting file size for {file_path}: {e}")
         return 0
+    
+def bytes_to_megabytes(bytes_value):
+    """
+    Converts a size in bytes to megabytes, rounded to 2 decimal places.
+    """
+    megabytes = bytes_value / (1024 ** 2)
+    return round(megabytes, 2)
+
