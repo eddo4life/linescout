@@ -18,13 +18,16 @@ def generate_summary(directory, extension):
                 file_path = os.path.join(root, file)
                 size = get_file_size(file_path)
                 total_size += size
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    line_count = sum(1 for _ in f)
-                file_details.append({
-                    'file': file,
-                    'size': format_size(size),
-                    'lines': line_count
-                 })
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        line_count = sum(1 for _ in f)
+                    file_details.append({
+                        'file': file,
+                        'size': format_size(size),
+                        'lines': line_count
+                    })
+                except Exception as e:
+                    print(e)
     
     # Output the file details
     format_data_from_dict_list(file_details)
