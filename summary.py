@@ -27,7 +27,7 @@ def generate_summary(directory, extension):
                         'lines': line_count
                     })
                 except Exception as e:
-                    print(e)
+                    print("\033[91m" + str(e) + "\033[0m")
     
     # Output the file details
     format_data_from_dict_list(file_details)
