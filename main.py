@@ -12,10 +12,6 @@ def main():
     
     args = parser.parse_args()
 
-     # Check if extension is provided, else use default from config.py
-    if not args.extension:
-        args.extension = DEFAULT_EXTENSION  # Use default extension from config.py
-    
     # Count files and lines
     file_count, total_lines = count_files_and_lines_by_extension(args.directory, args.extension)
     
