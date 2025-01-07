@@ -13,7 +13,7 @@ def count_files_and_lines_by_extension(directory, extension):
     file_count = 0
     total_lines = 0
     
-    for root, _, files in tqdm(os.walk(directory), desc="\033[93m Scanning directories \033[0m"):
+    for root, _, files in tqdm(os.walk(directory), desc="\033[93mScanning directories \033[0m"):
         for file in files:
             if file.endswith(extension):
                 file_count += 1
