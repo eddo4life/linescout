@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 from file_utils import count_files_and_lines_by_extension
-from summary import generate_summary
+from summary import analyze_directory, generate_summary
 from config import DEFAULT_EXTENSION, DEFAULT_DIRECTORY
 from utils import print_error
 
@@ -16,6 +16,7 @@ def main():
     parser.add_argument("extension", nargs="?", default=DEFAULT_EXTENSION, help="File extension to filter by (e.g., .txt, .py). Defaults to config value.")
     parser.add_argument("--size", action="store_true", help="Include file size in summary.")
     parser.add_argument("--report", action="store_true", help="Generate a detailed report.")
+    parser.add_argument("--full-report", action="store_true", help="Generate a full detailed report.")
 
     args = parser.parse_args()
 
@@ -46,6 +47,10 @@ def main():
 
     if args.report:
         generate_summary(args.directory, args.extension)
+
+    if args.full_report:
+        print("\n\033[1;35m[FULL REPORT]\033[0m\n")
+        analyze_directory(args.directory)
 
 def validate_directory_and_extension(args):
     """

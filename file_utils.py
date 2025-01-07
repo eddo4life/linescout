@@ -1,3 +1,4 @@
+import mimetypes
 import os
 from tqdm import tqdm
 
@@ -35,6 +36,13 @@ def get_file_size(file_path):
     except Exception as e:
         print_error(f"Error getting file size for {file_path}: {e}")
         return 0
+    
+def is_text_file(file_path):
+    """
+    Determines if a file is a text-based file.
+    """
+    mime_type, _ = mimetypes.guess_type(file_path)
+    return mime_type and mime_type.startswith("text")
     
 def format_size(bytes_value):
     """
