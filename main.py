@@ -1,11 +1,11 @@
 from file_utils import count_files_and_lines_by_extension
 from summary import generate_summary
 import argparse
-from config import DEFAULT_EXTENSION
+from config import DEFAULT_EXTENSION,DEFAULT_DIRECTORY
 
 def main():
     parser = argparse.ArgumentParser(description="LineScout: Scan directories for file line counts.")
-    parser.add_argument("directory", help="Directory to scan")
+    parser.add_argument("directory",nargs="?",default=DEFAULT_DIRECTORY, help="Directory to scan: Default is the current working directory.")
     parser.add_argument("extension", nargs="?", default=DEFAULT_EXTENSION, help="File extension to filter by (e.g., .txt, .py). Defaults to config value.")
     parser.add_argument("--size", action="store_true", help="Include file size in summary")
     parser.add_argument("--report", action="store_true", help="Generate a detailed report")
