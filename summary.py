@@ -1,5 +1,5 @@
 from tqdm import tqdm
-from dictionary_table_formatter import format_data_from_list_dict, format_data_from_dict_list
+from dictionary_table_formatter import format_data_with_tabulate, format_data_from_dict_list_with_tabulate
 from file_utils import format_size, get_file_size, is_text_file
 import os
 
@@ -33,7 +33,7 @@ def generate_summary(directory, extension):
                     print_error(f'{file}:\n\t{e}')
     
     # Output the file details
-    format_data_from_list_dict(file_details)
+    format_data_with_tabulate(file_details)
     
     if total_size>0:
         print_success(f"\nTotal size of all files: {format_size(total_size)}")
@@ -74,8 +74,8 @@ def analyze_directory(directory):
     
     # Print extension summary
     print("\n\033[96mFile Extension Summary:\033[0m")
-    format_data_from_dict_list(extension_summary)
+    format_data_from_dict_list_with_tabulate(extension_summary)
 
     # Print text file details
     print("\n\033[92mText-Based File Details:\033[0m")
-    format_data_from_list_dict(text_file_details)
+    format_data_with_tabulate(text_file_details)
