@@ -42,7 +42,23 @@ def is_text_file(file_path):
     Determines if a file is a text-based file.
     """
     mime_type, _ = mimetypes.guess_type(file_path)
-    return mime_type and mime_type.startswith("text")
+    if mime_type and mime_type.startswith("text"):
+        return True
+
+    # Treat unknown MIME types as text unless proven binary
+    if mime_type is None:
+        try:
+            with open(file_path, 'rb') as f:
+                # Read the first 1024 bytes to check for binary data
+                chunk = f.read(1024)
+                if b'\0' in chunk:  # Binary files typically contain null bytes
+                    return False
+            return True
+        except Exception:
+            return False  # Treat unreadable files as non-text
+
+    return False
+
     
 def format_size(bytes_value):
     """
