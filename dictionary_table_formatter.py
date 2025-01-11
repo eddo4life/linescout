@@ -12,7 +12,7 @@ def format_data_with_tabulate(data):
     headers = list(data[0].keys())
     table = [list(row.values()) for row in data]
 
-    print(tabulate(table, headers=headers, tablefmt="grid"))
+    print(tabulate(table, headers=headers))
 
 
 def format_data_from_dict_list_with_tabulate(extension_summary):
@@ -29,4 +29,4 @@ def format_data_from_dict_list_with_tabulate(extension_summary):
         for ext, info in extension_summary.items()
     ]
 
-    print(tabulate(rows, headers=headers, tablefmt="fancy_grid"))
+    print(tabulate(rows, headers=headers))
