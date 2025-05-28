@@ -19,20 +19,9 @@ def main():
     parser.add_argument("--full-report", action="store_true", help="Generate a full detailed report.")
 
     args = parser.parse_args()
-
-    try:
-        # Adjust arguments if necessary
-        if args.directory.startswith('.'):
-            # Treat as extension if it starts with a dot
-            args.extension = args.directory
-            args.directory = DEFAULT_DIRECTORY
-
-        # Validate arguments
-        validate_directory_and_extension(args)
-
-    except Exception as e:
-        print_error(e)
-        sys.exit(1)
+    
+    # Validate arguments
+    validate_directory_and_extension(args)
 
     # Count files and lines
     file_count, total_lines = count_files_and_lines_by_extension(args.directory, args.extension)
