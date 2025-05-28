@@ -33,6 +33,7 @@ def main():
     # Optionally, print file size and generate a detailed report
     if args.size:
         print("Including file sizes in summary...")
+        #TODO: Implement file size calculation and display
 
     if args.report:
         generate_summary(args.directory, args.extension)
