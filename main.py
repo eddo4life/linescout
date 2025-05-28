@@ -20,8 +20,12 @@ def main():
 
     args = parser.parse_args()
     
-    # Validate arguments
-    validate_directory_and_extension(args)
+    try:
+        # Validate the directory and extension
+        validate_directory_and_extension(args)
+    except ValueError as e:
+        print_error(str(e))
+        sys.exit(1)
 
     # Count files and lines
     file_count, total_lines = count_files_and_lines_by_extension(args.directory, args.extension)
